@@ -1,0 +1,91 @@
+name: CI/CD Pipeline — Cosmic Profile Engine
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-django:
+    name: Test Django API
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: adminpassword
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install -r django-server/requirements.txt
+      - name: Run Django tests
+        working-directory: ./django-server
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_NAME: test_db
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: adminpassword
+          NODE_SERVICE_URL: http://localhost:5000
+        run: python manage.py test
+
+  test-node:
+    name: Test Node.js Microservice
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        working-directory: ./node-microservice
+        run: npm ci
+      - name: Run tests
+        working-directory: ./node-microservice
+        run: npm test --if-present
+
+  build-and-push:
+    name: Build & Push Docker Images
+    runs-on: ubuntu-latest
+    needs: [test-django, test-node]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Build & Push Django image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./django-server
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cosmic-django:latest
+      - name: Build & Push Node image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./node-microservice
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cosmic-node:latest
+      - name: Build & Push Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cosmic-frontend:latest

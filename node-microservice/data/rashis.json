@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1, "rashi": "Mesha", "english": "Aries", "ruler": "Mars", "element": "Fire",
+    "syllables": ["chu","che","cho","la","li","lu","le","lo","a"],
+    "deity": "Lord Hanuman", "colour": "Red", "day": "Tuesday",
+    "gemstone": "Red Coral", "direction": "East",
+    "themes": ["Leadership","Courage","Action","Initiative","Energy"],
+    "strengths": ["Fearless","Dynamic","Pioneering","Confident"],
+    "challenges": ["Impatient","Aggressive","Impulsive"]
+  },
+  {
+    "id": 2, "rashi": "Vrishabha", "english": "Taurus", "ruler": "Venus", "element": "Earth",
+    "syllables": ["ee","u","e","o","va","vi","vu","ve","vo"],
+    "deity": "Goddess Lakshmi", "colour": "White/Pink", "day": "Friday",
+    "gemstone": "Diamond", "direction": "South",
+    "themes": ["Stability","Luxury","Beauty","Patience","Finance"],
+    "strengths": ["Patient","Reliable","Artistic","Loyal"],
+    "challenges": ["Stubborn","Possessive","Materialistic"]
+  },
+  {
+    "id": 3, "rashi": "Mithuna", "english": "Gemini", "ruler": "Mercury", "element": "Air",
+    "syllables": ["ka","ki","ku","gha","ng","chha","ke","ko","ha"],
+    "deity": "Lord Vishnu", "colour": "Green", "day": "Wednesday",
+    "gemstone": "Emerald", "direction": "West",
+    "themes": ["Communication","Intelligence","Adaptability","Duality"],
+    "strengths": ["Witty","Versatile","Curious","Quick-thinking"],
+    "challenges": ["Restless","Superficial","Inconsistent"]
+  },
+  {
+    "id": 4, "rashi": "Karka", "english": "Cancer", "ruler": "Moon", "element": "Water",
+    "syllables": ["hi","hu","he","ho","da","di","du","de","do"],
+    "deity": "Goddess Durga", "colour": "White/Silver", "day": "Monday",
+    "gemstone": "Pearl", "direction": "North",
+    "themes": ["Emotion","Nurturing","Family","Intuition","Home"],
+    "strengths": ["Empathetic","Protective","Imaginative","Loyal"],
+    "challenges": ["Moody","Over-sensitive","Clingy"]
+  },
+  {
+    "id": 5, "rashi": "Simha", "english": "Leo", "ruler": "Sun", "element": "Fire",
+    "syllables": ["ma","mi","mu","me","mo","ta","ti","tu","te"],
+    "deity": "Lord Shiva", "colour": "Gold/Orange", "day": "Sunday",
+    "gemstone": "Ruby", "direction": "East",
+    "themes": ["Leadership","Recognition","Creativity","Authority"],
+    "strengths": ["Confident","Generous","Loyal","Charismatic"],
+    "challenges": ["Ego","Arrogance","Domineering"]
+  },
+  {
+    "id": 6, "rashi": "Kanya", "english": "Virgo", "ruler": "Mercury", "element": "Earth",
+    "syllables": ["to","pa","pi","pu","sha","na","tha","pe","po"],
+    "deity": "Goddess Saraswati", "colour": "Green", "day": "Wednesday",
+    "gemstone": "Emerald", "direction": "South",
+    "themes": ["Analysis","Precision","Service","Health","Logic"],
+    "strengths": ["Detail-oriented","Practical","Analytical","Helpful"],
+    "challenges": ["Perfectionist","Critical","Anxious"]
+  },
+  {
+    "id": 7, "rashi": "Tula", "english": "Libra", "ruler": "Venus", "element": "Air",
+    "syllables": ["ra","ri","ru","re","ro"],
+    "deity": "Goddess Lakshmi", "colour": "White/Pastel", "day": "Friday",
+    "gemstone": "Diamond", "direction": "West",
+    "themes": ["Balance","Relationships","Diplomacy","Justice"],
+    "strengths": ["Charming","Fair-minded","Romantic","Cooperative"],
+    "challenges": ["Indecisive","People-pleasing","Avoidant"]
+  },
+  {
+    "id": 8, "rashi": "Vrischika", "english": "Scorpio", "ruler": "Mars", "element": "Water",
+    "syllables": ["na","ni","nu","ne","no","ya","yi","yu"],
+    "deity": "Lord Hanuman", "colour": "Dark Red/Maroon", "day": "Tuesday",
+    "gemstone": "Red Coral", "direction": "North",
+    "themes": ["Transformation","Intensity","Research","Mystery"],
+    "strengths": ["Determined","Brave","Passionate","Strategic"],
+    "challenges": ["Jealous","Secretive","Vengeful"]
+  },
+  {
+    "id": 9, "rashi": "Dhanu", "english": "Sagittarius", "ruler": "Jupiter", "element": "Fire",
+    "syllables": ["ye","yo","bha","bhi","bhu","dha","pha","bhe"],
+    "deity": "Lord Brahma", "colour": "Yellow", "day": "Thursday",
+    "gemstone": "Yellow Sapphire", "direction": "East",
+    "themes": ["Wisdom","Expansion","Philosophy","Travel","Higher Learning"],
+    "strengths": ["Optimistic","Philosophical","Generous","Adventurous"],
+    "challenges": ["Over-confident","Preachy","Impatient"]
+  },
+  {
+    "id": 10, "rashi": "Makara", "english": "Capricorn", "ruler": "Saturn", "element": "Earth",
+    "syllables": ["bho","ja","ji","khi","khu","khe","kho","ga","gi"],
+    "deity": "Lord Shani", "colour": "Dark Blue/Black", "day": "Saturday",
+    "gemstone": "Blue Sapphire", "direction": "South",
+    "themes": ["Discipline","Responsibility","Authority","Ambition"],
+    "strengths": ["Disciplined","Responsible","Patient","Strategic"],
+    "challenges": ["Rigid","Pessimistic","Workaholic"]
+  },
+  {
+    "id": 11, "rashi": "Kumbha", "english": "Aquarius", "ruler": "Saturn", "element": "Air",
+    "syllables": ["gu","ge","go","sa","si","su","se","so"],
+    "deity": "Lord Shani", "colour": "Blue", "day": "Saturday",
+    "gemstone": "Blue Sapphire", "direction": "West",
+    "themes": ["Innovation","Humanity","Technology","Independence"],
+    "strengths": ["Innovative","Humanitarian","Intellectual","Independent"],
+    "challenges": ["Detached","Unpredictable","Rebellious"]
+  },
+  {
+    "id": 12, "rashi": "Meena", "english": "Pisces", "ruler": "Jupiter", "element": "Water",
+    "syllables": ["di","du","tha","jha","de","do","cha","chi"],
+    "deity": "Lord Vishnu", "colour": "Yellow/Sea Green", "day": "Thursday",
+    "gemstone": "Yellow Sapphire", "direction": "North",
+    "themes": ["Spirituality","Compassion","Imagination","Healing"],
+    "strengths": ["Compassionate","Artistic","Intuitive","Gentle"],
+    "challenges": ["Escapist","Over-trusting","Indecisive"]
+  }
+]

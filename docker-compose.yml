@@ -1,0 +1,95 @@
+services:
+  # ----------------------------------------
+  # DATABASES & BROKERS
+  # ----------------------------------------
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: astrology_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cosmic_net
+
+  mongodb:
+    image: mongo:6.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - cosmic_net
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - cosmic_net
+
+  # ----------------------------------------
+  # MICROSERVICES
+  # ----------------------------------------
+  django-api:
+    build: 
+      context: ./django-server
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django-server:/app
+    ports:
+      - "8001:8000"
+    environment:
+      - POSTGRES_NAME=astrology_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminpassword
+      - POSTGRES_HOST=postgres
+      - REDIS_URL=redis://redis:6379/0
+      - NODE_SERVICE_URL=http://node-engine:5000
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - cosmic_net
+
+  node-engine:
+    build:
+      context: ./node-microservice
+    command: npm start
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb://admin:adminpassword@mongodb:27017/cosmic_reports?authSource=admin
+      - PORT=5000
+    depends_on:
+      - mongodb
+    networks:
+      - cosmic_net
+
+  # ----------------------------------------
+  # FRONTEND (Next.js)
+  # ----------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+    command: npm start
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8001/api
+    networks:
+      - cosmic_net
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  cosmic_net:
+    driver: bridge
