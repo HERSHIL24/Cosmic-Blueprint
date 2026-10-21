@@ -38,6 +38,7 @@ services:
   # MICROSERVICES
   # ----------------------------------------
   django-api:
+    image: harry2410/cosmic-django:latest
     build: 
       context: ./django-server
     command: python manage.py runserver 0.0.0.0:8000
@@ -59,6 +60,7 @@ services:
       - cosmic_net
 
   node-engine:
+    image: harry2410/cosmic-node:latest
     build:
       context: ./node-microservice
     command: npm start
@@ -76,6 +78,7 @@ services:
   # FRONTEND (Next.js)
   # ----------------------------------------
   frontend:
+    image: harry2410/cosmic-frontend:latest
     build:
       context: ./frontend
     command: npm start
