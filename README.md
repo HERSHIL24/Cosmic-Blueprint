@@ -77,7 +77,7 @@ To run the entire 6-container cluster locally in a single command:
 
 ```bash
 # Clone the repository
-git clone https://github.com/harry2410/Cosmic-Blueprint.git
+git clone https://github.com/HERSHIL24/Cosmic-Blueprint.git
 cd Cosmic-Blueprint
 
 # Start all microservices (Postgres, Mongo, Redis, Django, Node, Frontend)
@@ -108,5 +108,5 @@ The repository includes a battle-tested GitHub Actions workflow (`.github/workfl
 ## 👤 Author & Maintainer
 
 - **Developer**: Hershil Mehta
-- **GitHub**: [@harry2410](https://github.com/harry2410)
+- **GitHub**: [@HERSHIL24](https://github.com/HERSHIL24)
 - **Docker Hub**: [harry2410](https://hub.docker.com/u/harry2410)
