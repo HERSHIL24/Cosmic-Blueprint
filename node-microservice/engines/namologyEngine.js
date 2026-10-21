@@ -1,9 +1,105 @@
 /**
  * Namology Engine — Name Analysis & Correction
- * Combines phonetic syllable matching with vibrational analysis
+ * Combines phonetic syllable matching with vibrational analysis & Triad Energy
  */
 
 const { calculateChaldeanValue, calculatePythagoreanValue, reduceToSingleDigit } = require('./numerologyEngine');
+
+// 1-9 Number Power Table (Matching traditional esoteric vibration & notes)
+const NUMBER_POWER_TABLE = {
+  1: {
+    number: 1,
+    title: "Fame & Leadership",
+    gujarati: "પ્રસિદ્ધિ, નેતૃત્વ",
+    hindi: "ख्याति और नेतृत्व",
+    planet: "Sun (Surya)",
+    vibration: "Initiator, Commanding Authority, Pioneer, High Visibility",
+    careerHint: "Government, Founder, Executive Leadership, Big Brand Ambassador"
+  },
+  2: {
+    number: 2,
+    title: "Diplomacy & Partnership",
+    gujarati: "સહયોગ, કૂટનીતિ",
+    hindi: "सहयोग और कूटनीति",
+    planet: "Moon (Chandra)",
+    vibration: "Empathic, Peacemaker, Intuitive Harmony, Relational Strength",
+    careerHint: "Public Relations, Creative Arts, Diplomacy, Advisory"
+  },
+  3: {
+    number: 3,
+    title: "Lucky & Wisdom",
+    gujarati: "જ્ઞાન - ભાગ્ય, સૌભાગ્ય, રચનાત્મકતા",
+    hindi: "ज्ञान, सौभाग्य और रचनात्मकता",
+    planet: "Jupiter (Guru)",
+    vibration: "Philosophical Expansion, Divine Luck, Mentorship, High Intelligence",
+    careerHint: "Advisory, Fintech, Education, Spiritual & Legal Counsel"
+  },
+  4: {
+    number: 4,
+    title: "Innovation & Change",
+    gujarati: "નવી સોચ ઔર ક્રાંતિ",
+    hindi: "नई सोच और क्रांति",
+    planet: "Rahu",
+    vibration: "Unconventional Genius, Disruption, Structural Architect, System Builder",
+    careerHint: "Tech Disruptors, Artificial Intelligence, Complex Engineering, Research"
+  },
+  5: {
+    number: 5,
+    title: "Influence & Communication",
+    gujarati: "પ્રભાવશાળી વાતચીત, વ્યાપારી",
+    hindi: "प्रभावशाली संचार और व्यापारिक बुद्धि",
+    planet: "Mercury (Budh)",
+    vibration: "Commercial Wizardry, Persuasive Speech, Versatility, High Speed",
+    careerHint: "Global Trade, Marketing, Media, Venture Capital, Tech Startups"
+  },
+  6: {
+    number: 6,
+    title: "Magnetism & Luxury",
+    gujarati: "સુંદરતા, પ્રેમ, સમૃદ્ધ જીવન",
+    hindi: "आकर्षण, प्रेम और समृद्ध जीवन",
+    planet: "Venus (Shukra)",
+    vibration: "Irresistible Charm, Premium Lifestyle, Aesthetic Elegance, Emotional Wealth",
+    careerHint: "Luxury Brands, Media & Design, High-End Hospitality, Creative Tech"
+  },
+  7: {
+    number: 7,
+    title: "Mysticism & Intuition",
+    gujarati: "રહસ્ય ઔર આધ્યાત્મિકતા",
+    hindi: "रहस्य और गहन आध्यात्मिकता",
+    planet: "Ketu",
+    vibration: "Esoteric Depth, Visionary Intuition, Deep Analytical Mind, Research Mastery",
+    careerHint: "Deep Tech, Data Science, Strategy Consulting, Psychology, Occult/Vedic Sciences"
+  },
+  8: {
+    number: 8,
+    title: "Power & Wealth",
+    gujarati: "શક્તિ ઔર સમૃદ્ધિ, સત્તા ઔર સફળતા",
+    hindi: "शक्ति, अटूट समृद्धि और सत्ता",
+    planet: "Saturn (Shani)",
+    vibration: "Empire Builder, Karmic Resilience, Material Supremacy, Long-term Dominance",
+    careerHint: "Heavy Industries, Real Estate, Investment Banking, High Political Office"
+  },
+  9: {
+    number: 9,
+    title: "Passion & Victory",
+    gujarati: "જોશ ઔર વિજય",
+    hindi: "जोश, शौर्य और विजय",
+    planet: "Mars (Mangal)",
+    vibration: "Fearless Fighter, Humanitarian Warrior, Supreme Energy, Triumph",
+    careerHint: "Defense, High-Performance Athletics, Transformational Politics, Surge Operations"
+  }
+};
+
+const CHALDEAN_MAP = {
+  A:1, I:1, J:1, Q:1, Y:1,
+  B:2, K:2, R:2,
+  C:3, G:3, L:3, S:3,
+  D:4, M:4, T:4,
+  E:5, H:5, N:5, X:5,
+  U:6, V:6, W:6,
+  O:7, Z:7,
+  F:8, P:8
+};
 
 // Full traditional Rashi syllable data
 const RASHIS_DATA = [
@@ -74,38 +170,89 @@ function getRashiFromName(name) {
   return bestMatch || RASHIS_DATA[0];
 }
 
+function calculateWordVibration(word) {
+  const clean = word.toUpperCase().replace(/[^A-Z]/g, '');
+  let letters = [];
+  let total = 0;
+
+  for (const ch of clean) {
+    const val = CHALDEAN_MAP[ch] || 0;
+    letters.push({ char: ch, value: val });
+    total += val;
+  }
+
+  const singleDigit = reduceToSingleDigit(total);
+  return {
+    word,
+    clean,
+    letters,
+    rawSum: total,
+    singleDigit,
+    power: NUMBER_POWER_TABLE[singleDigit] || NUMBER_POWER_TABLE[1]
+  };
+}
+
 function getNameVibration(name) {
-  const chaldean = calculateChaldeanValue(name);
+  const rawParts = name.trim().split(/\s+/).filter(Boolean);
+  const firstNamePart = rawParts[0] || '';
+  const lastNamePart = rawParts.slice(1).join(' ') || '';
+
+  const firstNameAnalysis = calculateWordVibration(firstNamePart);
+  const lastNameAnalysis = lastNamePart ? calculateWordVibration(lastNamePart) : null;
+
+  // Combined full name
+  const combinedRawSum = (firstNameAnalysis.rawSum || 0) + (lastNameAnalysis ? lastNameAnalysis.rawSum : 0);
+  const combinedSingleDigit = reduceToSingleDigit(combinedRawSum || calculateChaldeanValue(name));
+  const combinedPower = NUMBER_POWER_TABLE[combinedSingleDigit] || NUMBER_POWER_TABLE[1];
+
   const pythagorean = calculatePythagoreanValue(name);
   const rashi = getRashiFromName(name);
 
-  // Find ruling planet for the chaldean number
-  const rulingPlanet = Object.entries(PLANET_VIBRATIONS).find(([, data]) => data.number === chaldean)?.[0] || 'Mercury';
+  // Ruling planet based on combined Chaldean vibration
+  const rulingPlanet = Object.entries(PLANET_VIBRATIONS).find(([, data]) => data.number === combinedSingleDigit)?.[0] || 'Mercury';
   const vibData = PLANET_VIBRATIONS[rulingPlanet];
 
   return {
-    chaldeanNumber: chaldean,
+    chaldeanNumber: combinedSingleDigit,
     pythagoreanNumber: pythagorean,
     probableRashi: rashi,
     rulingPlanet,
     favourableDay: vibData?.day,
     favourableColour: vibData?.colour,
     suggestedGemstone: vibData?.gemstone,
-    mantra: vibData?.mantra
+    mantra: vibData?.mantra,
+    
+    // Detailed Namology Triad (First Name + Last Name + Combined)
+    triad: {
+      firstName: {
+        name: firstNamePart,
+        number: firstNameAnalysis.singleDigit,
+        rawSum: firstNameAnalysis.rawSum,
+        letters: firstNameAnalysis.letters,
+        power: firstNameAnalysis.power
+      },
+      lastName: lastNameAnalysis ? {
+        name: lastNamePart,
+        number: lastNameAnalysis.singleDigit,
+        rawSum: lastNameAnalysis.rawSum,
+        letters: lastNameAnalysis.letters,
+        power: lastNameAnalysis.power
+      } : null,
+      combined: {
+        fullName: name,
+        number: combinedSingleDigit,
+        rawSum: combinedRawSum,
+        power: combinedPower
+      }
+    }
   };
 }
 
 function getNameCorrection(name, targetNumber) {
-  // Suggest appending a letter to shift the chaldean total toward targetNumber
   const current = calculateChaldeanValue(name);
   if (current === targetNumber) {
     return { suggestion: 'Name is already vibrating at the target number.', currentNumber: current };
   }
-
-  const CHALDEAN_MAP = {
-    A:1, I:1, J:1, Q:1, Y:1, B:2, K:2, R:2, C:3, G:3, L:3, S:3,
-    D:4, M:4, T:4, E:5, H:5, N:5, X:5, U:6, V:6, W:6, O:7, Z:7, F:8, P:8
-  };
 
   const suggestions = [];
   for (const [letter, value] of Object.entries(CHALDEAN_MAP)) {
@@ -124,4 +271,12 @@ function getNameCorrection(name, targetNumber) {
   };
 }
 
-module.exports = { getRashiFromName, getNameVibration, getNameCorrection, RASHIS_DATA, PLANET_VIBRATIONS };
+module.exports = {
+  getRashiFromName,
+  getNameVibration,
+  getNameCorrection,
+  RASHIS_DATA,
+  PLANET_VIBRATIONS,
+  NUMBER_POWER_TABLE,
+  calculateWordVibration
+};

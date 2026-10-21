@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cinzel); /* We'll add this google font */
+}
+
+:root {
+  --background: hsl(230, 40%, 8%);
+  --foreground: hsl(230, 20%, 95%);
+  --card: hsl(230, 30%, 12%);
+  --card-foreground: hsl(230, 20%, 95%);
+  --popover: hsl(230, 30%, 12%);
+  --popover-foreground: hsl(230, 20%, 95%);
+  --primary: hsl(45, 90%, 50%);
+  --primary-foreground: hsl(230, 40%, 8%);
+  --secondary: hsl(230, 25%, 18%);
+  --secondary-foreground: hsl(230, 20%, 90%);
+  --muted: hsl(230, 25%, 18%);
+  --muted-foreground: hsl(230, 15%, 70%);
+  --accent: hsl(230, 30%, 25%);
+  --accent-foreground: hsl(230, 20%, 95%);
+  --destructive: hsl(0, 70%, 50%);
+  --destructive-foreground: hsl(0, 100%, 98%);
+  --border: hsl(230, 25%, 18%);
+  --input: hsl(230, 25%, 18%);
+  --ring: hsl(45, 90%, 50%);
+  --chart-1: hsl(45, 90%, 50%);
+  --chart-2: hsl(240, 60%, 60%);
+  --chart-3: hsl(290, 50%, 50%);
+  --chart-4: hsl(140, 80%, 80%);
+  --chart-5: hsl(40, 70%, 70%);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  /* High contrast gold calendar and time picker indicators */
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.9) sepia(0.9) saturate(5) hue-rotate(5deg) brightness(1.2);
+    cursor: pointer;
+    opacity: 0.95;
+    padding: 2px;
+    border-radius: 4px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator:hover,
+  input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Custom sleek auto-fading scrollbar */
+.cosmic-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(45 90% 50% / 0.3) transparent;
+}
+.cosmic-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.cosmic-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cosmic-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(45 90% 50% / 0.35);
+  border-radius: 9999px;
+}
+.cosmic-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(45 90% 50% / 0.7);
+}
+
+/* Professional Print Styles for Astrotalk-grade output */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm 14mm 14mm;
+  }
+
+  body {
+    background: #030712 !important;
+    color: #f8fafc !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  header, nav, .print-hidden, [role="navigation"] {
+    display: none !important;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .force-page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}

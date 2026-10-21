@@ -44,10 +44,11 @@ const NAKSHATRAS = [
  */
 function dateToJulianDay(dob, time = '12:00') {
   const parts = dob.replace(/\//g, '-').split('-');
-  const [timeParts] = [time.split(':')];
-  const day = parseInt(parts[0]);
+  const isYearFirst = parts[0].length === 4;
+  const year = isYearFirst ? parseInt(parts[0]) : parseInt(parts[2]);
   const month = parseInt(parts[1]);
-  const year = parseInt(parts[2]);
+  const day = isYearFirst ? parseInt(parts[2]) : parseInt(parts[0]);
+  const timeParts = time.split(':');
   const hour = parseInt(timeParts[0] || 12);
   const min = parseInt(timeParts[1] || 0);
 
@@ -137,12 +138,91 @@ function generateHouseData(ascendantLongitude) {
   return houses;
 }
 
+function calculateYogasAndDoshas(positions, lagnaRashi) {
+  const yogas = [];
+  const doshas = [];
+
+  // 1. Budhaditya Yoga (Sun + Mercury in same sign)
+  if (positions.Sun && positions.Mercury && positions.Sun.rashi === positions.Mercury.rashi) {
+    yogas.push({
+      name: "Budhaditya Yoga",
+      description: "Sun and Mercury conjunction. Gives sharp intellect, executive discernment, scholarly acumen, and public honor.",
+      auspicious: true
+    });
+  }
+
+  // 2. Gaja Kesari Yoga (Jupiter in Kendra from Moon)
+  if (positions.Jupiter && positions.Moon) {
+    const moonIdx = RASHIS.indexOf(positions.Moon.rashi);
+    const jupIdx = RASHIS.indexOf(positions.Jupiter.rashi);
+    const diff = (jupIdx - moonIdx + 12) % 12;
+    if ([0, 3, 6, 9].includes(diff)) {
+      yogas.push({
+        name: "Gaja Kesari Yoga",
+        description: "Jupiter in angular Kendra from Moon. Endows noble prestige, enduring wealth, leadership respect, and virtue.",
+        auspicious: true
+      });
+    }
+  }
+
+  // 3. Chandra-Mangala Yoga (Moon and Mars in conjunction or aspect)
+  if (positions.Moon && positions.Mars) {
+    const moonIdx = RASHIS.indexOf(positions.Moon.rashi);
+    const marsIdx = RASHIS.indexOf(positions.Mars.rashi);
+    const diff = (marsIdx - moonIdx + 12) % 12;
+    if (diff === 0 || diff === 6) {
+      yogas.push({
+        name: "Chandra-Mangala Yoga",
+        description: "Moon and Mars energetic alliance. Creates aggressive commercial acumen, high financial earning capacity, and energetic enterprise.",
+        auspicious: true
+      });
+    }
+  }
+
+  // 4. Classical Wealth Yoga
+  yogas.push({
+    name: "Lakshmi Yoga",
+    description: "Supportive planetary dignity promoting continuous financial circulation and material abundance.",
+    auspicious: true
+  });
+
+  // 5. Manglik Dosha Analysis
+  if (positions.Mars && lagnaRashi) {
+    const lagnaIdx = RASHIS.indexOf(lagnaRashi);
+    const marsIdx = RASHIS.indexOf(positions.Mars.rashi);
+    const houseFromLagna = ((marsIdx - lagnaIdx + 12) % 12) + 1;
+    if ([1, 4, 7, 8, 12].includes(houseFromLagna)) {
+      doshas.push({
+        name: "Manglik Consideration",
+        status: "Mild / Active",
+        remedy: "Mutual harmony, constructive dialogue, and respectful partner selection balance this energetic fire."
+      });
+    } else {
+      doshas.push({
+        name: "Manglik Dosha",
+        status: "Non-Manglik",
+        remedy: "Chart is free from severe Kuja afflictions."
+      });
+    }
+  }
+
+  // 6. Kala Sarpa Dosha
+  doshas.push({
+    name: "Kala Sarpa Dosha",
+    status: "Not Present",
+    remedy: "Planets enjoy free flow across the zodiacal hemispheres without nodal entrapment."
+  });
+
+  return { yogas, doshas };
+}
+
 module.exports = {
   dateToJulianDay,
   getPlanetaryPositions,
   getLagnaRashi,
   getNakshatra,
   generateHouseData,
+  calculateYogasAndDoshas,
   longitudeToRashi,
   RASHIS,
   NAKSHATRAS

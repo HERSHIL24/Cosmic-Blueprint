@@ -3,7 +3,8 @@ const router = express.Router();
 const Report = require('../models/Report');
 const {
   dateToJulianDay, getPlanetaryPositions,
-  getLagnaRashi, getNakshatra, generateHouseData
+  getLagnaRashi, getNakshatra, generateHouseData,
+  calculateYogasAndDoshas
 } = require('../engines/astrologyEngine');
 
 // POST /api/astrology/chart
@@ -22,11 +23,8 @@ router.post('/chart', async (req, res, next) => {
     const moonNakshatra = getNakshatra(planets.Moon.longitude);
     const houses = generateHouseData(lagna.longitude);
 
-    // Identify key yogas (simplified)
-    const yogas = [];
-    if (planets.Jupiter.rashi === lagna.rashi) yogas.push({ name: 'Hamsa Yoga', description: 'Jupiter in Lagna — wisdom and spiritual grace' });
-    if (planets.Sun.rashi === 'Mesha') yogas.push({ name: 'Uchcha Surya', description: 'Exalted Sun — strong leadership and vitality' });
-    if (planets.Moon.rashi === 'Vrishabha') yogas.push({ name: 'Uchcha Chandra', description: 'Exalted Moon — emotional strength and prosperity' });
+    const { yogas: deepYogas, doshas } = calculateYogasAndDoshas(planets, lagna.rashi);
+    const allYogas = deepYogas || [];
 
     const result = {
       dob, time: birthTime, lat: latitude, lon: longitude,
@@ -37,7 +35,8 @@ router.post('/chart', async (req, res, next) => {
       nakshatraRuler: moonNakshatra.ruler,
       planets,
       houses,
-      yogas,
+      yogas: allYogas,
+      doshas,
       summary: {
         lagna: `Your Lagna (Ascendant) is ${lagna.rashi}, giving you a ${lagna.rashi}-natured personality and physical constitution.`,
         moonSign: `Moon in ${planets.Moon.rashi} in the ${moonNakshatra.name} Nakshatra shapes your emotional world and intuitive mind.`,

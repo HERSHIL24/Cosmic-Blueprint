@@ -1,0 +1,230 @@
+[
+  {
+    "id": 1,
+    "rashi": "Mesha",
+    "english": "Aries",
+    "ruler": "Mars",
+    "element": "Fire",
+    "nature": "Movable / Cardinal",
+    "syllables": ["Chu", "Che", "Cho", "La", "Li", "Lu", "Le", "Lo", "A", "Ch"],
+    "nakshatras": ["Ashwini", "Bharani", "Krittika (part)"],
+    "themes": ["Leadership", "Initiative", "Courage", "Action", "Competition", "Independence", "Speed", "Confidence"],
+    "traits": {
+      "strengths": ["Bravery", "Leadership", "Quick decisions", "Initiative", "Competitive spirit", "Direct communication"],
+      "challenges": ["Impatience", "Anger", "Impulsiveness", "Restlessness", "Overconfidence"]
+    },
+    "career": ["Entrepreneurship", "Military", "Sports", "Engineering", "Management", "Leadership", "Emergency services", "Technology", "Politics", "Competitive professions"],
+    "colours": ["Red", "Coral", "Orange"],
+    "gemstones": ["Red Coral"],
+    "direction": "South"
+  },
+  {
+    "id": 2,
+    "rashi": "Vrishabha",
+    "english": "Taurus",
+    "ruler": "Venus",
+    "element": "Earth",
+    "nature": "Fixed",
+    "syllables": ["Ee", "U", "E", "O", "Va", "Vi", "Vu", "Ve", "Vo"],
+    "nakshatras": ["Krittika (part)", "Rohini", "Mrigashira (part)"],
+    "themes": ["Stability", "Luxury", "Beauty", "Patience", "Material comfort", "Relationships", "Persistence"],
+    "traits": {
+      "strengths": ["Reliable", "Patient", "Practical", "Loyal", "Aesthetic", "Persistent"],
+      "challenges": ["Stubbornness", "Possessiveness", "Resistance to change", "Material attachment"]
+    },
+    "career": ["Finance", "Banking", "Fashion", "Beauty", "Luxury", "Music", "Food", "Real estate", "Interior design", "Art", "Hospitality", "Business"],
+    "colours": ["White", "Pink", "Green"],
+    "gemstones": ["Diamond", "White Sapphire"],
+    "direction": "South-East"
+  },
+  {
+    "id": 3,
+    "rashi": "Mithuna",
+    "english": "Gemini",
+    "ruler": "Mercury",
+    "element": "Air",
+    "nature": "Dual / Mutable",
+    "syllables": ["Ka", "Ki", "Ku", "Gha", "Ng", "Chha", "Ke", "Ko", "Ha"],
+    "nakshatras": ["Mrigashira (part)", "Ardra", "Punarvasu (part)"],
+    "themes": ["Communication", "Intelligence", "Learning", "Curiosity", "Networking", "Adaptability"],
+    "traits": {
+      "strengths": ["Communication", "Quick learning", "Creativity", "Versatility", "Logic", "Networking"],
+      "challenges": ["Overthinking", "Inconsistency", "Restlessness", "Scattered attention"]
+    },
+    "career": ["Writing", "Marketing", "Media", "Technology", "Programming", "Journalism", "Teaching", "Sales", "Trading", "Consulting", "Public speaking", "Content creation"],
+    "colours": ["Green", "Light yellow"],
+    "gemstones": ["Emerald"],
+    "direction": "North"
+  },
+  {
+    "id": 4,
+    "rashi": "Karka",
+    "english": "Cancer",
+    "ruler": "Moon",
+    "element": "Water",
+    "nature": "Movable",
+    "syllables": ["Hi", "Hu", "He", "Ho", "Da", "Di", "Du", "De", "Do"],
+    "nakshatras": ["Punarvasu (part)", "Pushya", "Ashlesha"],
+    "themes": ["Emotion", "Family", "Protection", "Nurturing", "Intuition", "Imagination", "Sensitivity"],
+    "traits": {
+      "strengths": ["Empathy", "Intuition", "Care", "Loyalty", "Emotional intelligence", "Protective nature"],
+      "challenges": ["Mood fluctuations", "Over-sensitivity", "Emotional attachment", "Insecurity", "Overthinking"]
+    },
+    "career": ["Counselling", "Psychology", "Teaching", "Healthcare support", "Hospitality", "Food", "Social work", "Human resources", "Writing", "Caregiving", "Real estate", "Public relations"],
+    "colours": ["White", "Silver", "Sea green"],
+    "gemstones": ["Pearl"],
+    "direction": "North-West"
+  },
+  {
+    "id": 5,
+    "rashi": "Simha",
+    "english": "Leo",
+    "ruler": "Sun",
+    "element": "Fire",
+    "nature": "Fixed",
+    "syllables": ["Ma", "Mi", "Mu", "Me", "Mo", "Ta", "Ti", "Tu", "Te"],
+    "nakshatras": ["Magha", "Purva Phalguni", "Uttara Phalguni (part)"],
+    "themes": ["Leadership", "Recognition", "Authority", "Creativity", "Confidence", "Self-expression"],
+    "traits": {
+      "strengths": ["Leadership", "Confidence", "Generosity", "Creativity", "Courage", "Charisma"],
+      "challenges": ["Ego", "Need for recognition", "Pride", "Dominance"]
+    },
+    "career": ["Leadership", "Politics", "Management", "Entertainment", "Acting", "Public speaking", "Administration", "Entrepreneurship", "Government", "Creative industries"],
+    "colours": ["Gold", "Orange", "Red"],
+    "gemstones": ["Ruby"],
+    "direction": "East"
+  },
+  {
+    "id": 6,
+    "rashi": "Kanya",
+    "english": "Virgo",
+    "ruler": "Mercury",
+    "element": "Earth",
+    "nature": "Dual / Mutable",
+    "syllables": ["To", "Pa", "Pi", "Pu", "Sha", "Na", "Tha", "Pe", "Po"],
+    "nakshatras": ["Uttara Phalguni (part)", "Hasta", "Chitra (part)"],
+    "themes": ["Analysis", "Precision", "Service", "Organization", "Logic", "Improvement"],
+    "traits": {
+      "strengths": ["Analytical", "Organized", "Practical", "Detail-oriented", "Disciplined", "Problem-solving"],
+      "challenges": ["Perfectionism", "Over-analysis", "Self-criticism", "Excessive worry"]
+    },
+    "career": ["IT", "Data analysis", "Research", "Accounting", "Medicine", "Pharmacy", "Programming", "Editing", "Writing", "Quality assurance", "Administration", "Consulting"],
+    "colours": ["Green", "Earth tones", "White"],
+    "gemstones": ["Emerald"],
+    "direction": "South"
+  },
+  {
+    "id": 7,
+    "rashi": "Tula",
+    "english": "Libra",
+    "ruler": "Venus",
+    "element": "Air",
+    "nature": "Movable",
+    "syllables": ["Ra", "Ri", "Ru", "Re", "Ro", "Ta", "Ti", "Tu", "Te"],
+    "nakshatras": ["Chitra (part)", "Swati", "Vishakha (part)"],
+    "themes": ["Balance", "Relationships", "Beauty", "Diplomacy", "Justice", "Partnership"],
+    "traits": {
+      "strengths": ["Diplomatic", "Charming", "Fair", "Social", "Creative", "Negotiation skills"],
+      "challenges": ["Indecision", "People-pleasing", "Avoiding conflict", "Dependence on approval"]
+    },
+    "career": ["Law", "Diplomacy", "Fashion", "Design", "Beauty", "Public relations", "Marketing", "Consulting", "Partnership business", "Arts", "Entertainment", "Negotiation"],
+    "colours": ["White", "Pink", "Pastel blue"],
+    "gemstones": ["Diamond", "Opal"],
+    "direction": "West"
+  },
+  {
+    "id": 8,
+    "rashi": "Vrischika",
+    "english": "Scorpio",
+    "ruler": "Mars",
+    "element": "Water",
+    "nature": "Fixed",
+    "syllables": ["To", "Na", "Ni", "Nu", "Ne", "No", "Ya", "Yi", "Yu"],
+    "nakshatras": ["Vishakha (part)", "Anuradha", "Jyeshtha"],
+    "themes": ["Transformation", "Intensity", "Research", "Mystery", "Power", "Determination"],
+    "traits": {
+      "strengths": ["Determination", "Deep thinking", "Loyalty", "Research ability", "Emotional strength", "Persistence"],
+      "challenges": ["Jealousy", "Possessiveness", "Suspicion", "Intensity", "Difficulty letting go"]
+    },
+    "career": ["Research", "Psychology", "Medicine", "Surgery", "Investigation", "Cybersecurity", "Forensics", "Military", "Engineering", "Occult studies", "Strategy", "Finance"],
+    "colours": ["Deep red", "Maroon", "Black"],
+    "gemstones": ["Red Coral"],
+    "direction": "North"
+  },
+  {
+    "id": 9,
+    "rashi": "Dhanu",
+    "english": "Sagittarius",
+    "ruler": "Jupiter",
+    "element": "Fire",
+    "nature": "Dual / Mutable",
+    "syllables": ["Ye", "Yo", "Bha", "Bhi", "Bhu", "Dha", "Pha", "Bhe"],
+    "nakshatras": ["Mula", "Purva Ashadha", "Uttara Ashadha (part)"],
+    "themes": ["Wisdom", "Expansion", "Philosophy", "Travel", "Education", "Spirituality"],
+    "traits": {
+      "strengths": ["Optimistic", "Adventurous", "Knowledge-oriented", "Generous", "Visionary"],
+      "challenges": ["Overconfidence", "Restlessness", "Blunt communication", "Over-promising"]
+    },
+    "career": ["Education", "Teaching", "Law", "Philosophy", "Travel", "International business", "Consulting", "Publishing", "Spiritual leadership", "Management"],
+    "colours": ["Yellow", "Golden", "Orange"],
+    "gemstones": ["Yellow Sapphire"],
+    "direction": "East / North-East"
+  },
+  {
+    "id": 10,
+    "rashi": "Makara",
+    "english": "Capricorn",
+    "ruler": "Saturn",
+    "element": "Earth",
+    "nature": "Movable",
+    "syllables": ["Bho", "Ja", "Ji", "Khi", "Khu", "Khe", "Kho", "Ga", "Gi"],
+    "nakshatras": ["Uttara Ashadha (part)", "Shravana", "Dhanishtha (part)"],
+    "themes": ["Discipline", "Responsibility", "Authority", "Persistence", "Long-term achievement"],
+    "traits": {
+      "strengths": ["Disciplined", "Patient", "Strategic", "Hardworking", "Responsible", "Goal-oriented"],
+      "challenges": ["Pessimism", "Work obsession", "Rigidity", "Emotional suppression"]
+    },
+    "career": ["Business", "Finance", "Administration", "Engineering", "Real estate", "Government", "Corporate leadership", "Mining", "Manufacturing", "Law", "Management"],
+    "colours": ["Dark blue", "Grey", "Black"],
+    "gemstones": ["Blue Sapphire (evaluate chart first)"],
+    "direction": "South"
+  },
+  {
+    "id": 11,
+    "rashi": "Kumbha",
+    "english": "Aquarius",
+    "ruler": "Saturn",
+    "element": "Air",
+    "nature": "Fixed",
+    "syllables": ["Gu", "Ge", "Go", "Sa", "Si", "Su", "Se", "So", "Da"],
+    "nakshatras": ["Dhanishtha (part)", "Shatabhisha", "Purva Bhadrapada (part)"],
+    "themes": ["Innovation", "Humanity", "Technology", "Independence", "Social reform", "Original thinking"],
+    "traits": {
+      "strengths": ["Innovative", "Independent", "Intellectual", "Humanitarian", "Future-oriented"],
+      "challenges": ["Detachment", "Unpredictability", "Stubbornness", "Emotional distance"]
+    },
+    "career": ["Technology", "IT", "Engineering", "Research", "Social innovation", "Humanitarian work", "Entrepreneurship", "Science", "Analytics", "Networking", "Future technologies"],
+    "colours": ["Electric blue", "Dark blue", "Turquoise"],
+    "gemstones": ["Amethyst"],
+    "direction": "West"
+  },
+  {
+    "id": 12,
+    "rashi": "Meena",
+    "english": "Pisces",
+    "ruler": "Jupiter",
+    "element": "Water",
+    "nature": "Dual / Mutable",
+    "syllables": ["Di", "Du", "Tha", "Jha", "De", "Do", "Cha", "Chi"],
+    "nakshatras": ["Purva Bhadrapada (part)", "Uttara Bhadrapada", "Revati"],
+    "themes": ["Spirituality", "Compassion", "Imagination", "Healing", "Creativity", "Intuition"],
+    "traits": {
+      "strengths": ["Compassionate", "Creative", "Intuitive", "Spiritual", "Adaptable", "Imaginative"],
+      "challenges": ["Escapism", "Over-sensitivity", "Idealism", "Poor boundaries"]
+    },
+    "career": ["Healing", "Psychology", "Music", "Writing", "Arts", "Spirituality", "Counselling", "Research", "Education", "Film", "Creative industries", "Humanitarian work"],
+    "colours": ["Yellow", "Sea green", "White", "Lavender"],
+    "gemstones": ["Yellow Sapphire"],
+    "direction": "North-East"
+  }
+]

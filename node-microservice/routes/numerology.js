@@ -3,8 +3,10 @@ const router = express.Router();
 const Report = require('../models/Report');
 const {
   calculateMulank, calculateBhagyank, calculateNamank,
-  getLoShuGrid, getPersonalYear, calculateKuaNumber
+  getLoShuGrid, getPersonalYear, calculateKuaNumber,
+  generateLifePredictions
 } = require('../engines/numerologyEngine');
+const { getNameVibration } = require('../engines/namologyEngine');
 
 const NUMBER_INTERPRETATIONS = {
   1: { planet:'Sun', themes:['Leadership','Independence','Originality'], strengths:['Confident','Decisive','Creative'], challenges:['Ego','Domineering'], career:['Entrepreneurship','Politics','Management'], colours:['Gold','Orange'], days:['Sunday'], gemstone:'Ruby', mantra:'Om Suryaya Namah', deity:'Surya (Sun God)' },
@@ -31,8 +33,12 @@ router.post('/calculate', async (req, res, next) => {
     const personalYear = getPersonalYear(dob);
 
     const parts = dob.replace(/\//g, '-').split('-');
-    const birthYear = parseInt(parts[2]);
+    const birthYear = parts[0].length === 4 ? parseInt(parts[0]) : parseInt(parts[2]);
     const kuaNumber = calculateKuaNumber(birthYear, gender || 'M');
+
+    // Deep predictive life matrix & name triad vibrations
+    const predictions = generateLifePredictions({ mulank, bhagyank, namank, dob });
+    const nameVibration = getNameVibration(name);
 
     const result = {
       name, dob,
@@ -41,6 +47,8 @@ router.post('/calculate', async (req, res, next) => {
       bhagyankInfo: NUMBER_INTERPRETATIONS[bhagyank],
       namankInfo: NUMBER_INTERPRETATIONS[namank],
       loShuGrid,
+      predictions,
+      nameTriad: nameVibration.triad,
       compatibility: {
         bestNumbers: [mulank % 9 + 1, bhagyank % 9 + 1],
         neutralNumbers: [namank],

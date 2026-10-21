@@ -1,0 +1,67 @@
+{
+  "planets": {
+    "Sun": {
+      "friendly": ["Moon", "Mars", "Jupiter"],
+      "neutral": ["Mercury"],
+      "challenging": ["Venus", "Saturn", "Rahu", "Ketu"],
+      "themes": ["Leadership", "Authority", "Ego", "Soul", "Vitality", "Government"],
+      "day": "Sunday"
+    },
+    "Moon": {
+      "friendly": ["Sun", "Mercury"],
+      "neutral": ["Mars", "Jupiter", "Venus", "Saturn"],
+      "challenging": ["Rahu", "Ketu"],
+      "themes": ["Mind", "Emotions", "Mother", "Nurturing", "Intuition"],
+      "day": "Monday"
+    },
+    "Mars": {
+      "friendly": ["Sun", "Moon", "Jupiter"],
+      "neutral": ["Venus", "Saturn"],
+      "challenging": ["Mercury", "Rahu", "Ketu"],
+      "themes": ["Energy", "Action", "Courage", "Aggression", "Brother", "Property"],
+      "day": "Tuesday"
+    },
+    "Mercury": {
+      "friendly": ["Sun", "Venus"],
+      "neutral": ["Mars", "Jupiter", "Saturn"],
+      "challenging": ["Moon"],
+      "themes": ["Intellect", "Communication", "Business", "Humour", "Adaptability"],
+      "day": "Wednesday"
+    },
+    "Jupiter": {
+      "friendly": ["Sun", "Moon", "Mars"],
+      "neutral": ["Saturn"],
+      "challenging": ["Mercury", "Venus"],
+      "themes": ["Wisdom", "Expansion", "Wealth", "Spirituality", "Education", "Guru"],
+      "day": "Thursday"
+    },
+    "Venus": {
+      "friendly": ["Mercury", "Saturn"],
+      "neutral": ["Mars", "Jupiter"],
+      "challenging": ["Sun", "Moon"],
+      "themes": ["Love", "Beauty", "Luxury", "Art", "Relationships", "Pleasure"],
+      "day": "Friday"
+    },
+    "Saturn": {
+      "friendly": ["Mercury", "Venus"],
+      "neutral": ["Jupiter"],
+      "challenging": ["Sun", "Moon", "Mars"],
+      "themes": ["Discipline", "Hard work", "Delay", "Karma", "Structure", "Longevity"],
+      "day": "Saturday"
+    },
+    "Rahu": {
+      "friendly": ["Venus", "Saturn", "Mercury"],
+      "neutral": ["Jupiter"],
+      "challenging": ["Sun", "Moon", "Mars"],
+      "themes": ["Illusion", "Material desires", "Foreign", "Innovation", "Obsession"],
+      "day": "Saturday"
+    },
+    "Ketu": {
+      "friendly": ["Venus", "Saturn", "Mercury"],
+      "neutral": ["Jupiter"],
+      "challenging": ["Sun", "Moon", "Mars"],
+      "themes": ["Spirituality", "Detachment", "Liberation", "Research", "Mysticism"],
+      "day": "Tuesday"
+    }
+  }
+}
