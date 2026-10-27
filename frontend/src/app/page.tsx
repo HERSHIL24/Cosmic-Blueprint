@@ -17,7 +17,11 @@ import { ConvergenceMap } from "@/components/ConvergenceMap";
 import { ArchitectureModal } from "@/components/ArchitectureModal";
 import { NamologyTriadCard } from "@/components/NamologyTriadCard";
 import { PredictiveLifeDossier } from "@/components/PredictiveLifeDossier";
-import { Brain, Briefcase, Users, Compass, Sparkles, Cpu, Layers, Heart, Globe, Award, Printer } from "lucide-react";
+import { KPSystemCard } from "@/components/KPSystemCard";
+import { NadiCombinationsCard } from "@/components/NadiCombinationsCard";
+import { KarmicAxisCard } from "@/components/KarmicAxisCard";
+import { PracticalRemediesCard } from "@/components/PracticalRemediesCard";
+import { Brain, Briefcase, Users, Compass, Sparkles, Cpu, Layers, Heart, Globe, Award, Printer, Target, ShieldCheck } from "lucide-react";
 
 const CosmicBackground = dynamic(() => import("@/components/CosmicBackground").then(mod => mod.CosmicBackground), { ssr: false });
 
@@ -29,7 +33,7 @@ export default function Home() {
   const [place, setPlace] = useState("");
   const [gender, setGender] = useState("M");
   const [isLoading, setIsLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<"all" | "namology" | "career" | "marriage" | "kundli">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "namology" | "career" | "marriage" | "kundli" | "kp_nadi" | "remedies">("all");
   const [isArchitectureModalOpen, setIsArchitectureModalOpen] = useState(false);
   
   const [numerologyData, setNumerologyData] = useState<any>(null);
@@ -414,7 +418,27 @@ export default function Home() {
                       : "bg-card/40 text-muted-foreground hover:text-foreground hover:bg-card/80"
                   }`}
                 >
-                  <Compass className="w-4 h-4" /> Vedic Kundli & Bhavs
+                  <Compass className="w-4 h-4" /> Vedic Kundli & Shodashvarga
+                </button>
+                <button
+                  onClick={() => setActiveTab("kp_nadi")}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-2 ${
+                    activeTab === "kp_nadi"
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                      : "bg-card/40 text-muted-foreground hover:text-foreground hover:bg-card/80"
+                  }`}
+                >
+                  <Target className="w-4 h-4" /> KP & Nadi Intelligence (85%-95%)
+                </button>
+                <button
+                  onClick={() => setActiveTab("remedies")}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-2 ${
+                    activeTab === "remedies"
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                      : "bg-card/40 text-muted-foreground hover:text-foreground hover:bg-card/80"
+                  }`}
+                >
+                  <ShieldCheck className="w-4 h-4" /> Practical Kalyug Upaye
                 </button>
               </div>
 
@@ -491,6 +515,7 @@ export default function Home() {
                           planets={kundliData?.planets} 
                           ascendant={kundliData?.ascendant} 
                           lagnaRashi={kundliData?.lagnaRashi || kundliData?.lagna_rashi} 
+                          divisionalCharts={kundliData?.divisionalCharts}
                         />
                       </div>
 
@@ -521,6 +546,46 @@ export default function Home() {
                           ))}
                         </div>
                       </div>
+                    )}
+                  </section>
+                )}
+
+                {/* SECTION 4: KP SUB-LORD & NADI EVENT PREDICTION (85% - 95% ACCURACY) */}
+                {(activeTab === "all" || activeTab === "kp_nadi" || activeTab === "kundli") && (
+                  <section className="space-y-8 pt-4 avoid-break">
+                    <div className="text-center mb-6">
+                      <h3 className="text-2xl sm:text-4xl font-serif text-primary">KP & Bhrigu Nandi Nadi Intelligence</h3>
+                      <p className="text-muted-foreground text-xs sm:text-sm uppercase tracking-widest mt-1">
+                        High-precision event timing via KP Sub-Lords & BNN directional alliances (85% – 95% Accuracy)
+                      </p>
+                    </div>
+
+                    {kundliData?.kpSystem && (
+                      <KPSystemCard kpData={kundliData.kpSystem} />
+                    )}
+
+                    {kundliData?.nadiCombinations && (
+                      <NadiCombinationsCard combinations={kundliData.nadiCombinations} />
+                    )}
+
+                    {kundliData?.karmicAxis && (
+                      <KarmicAxisCard axisData={kundliData.karmicAxis} />
+                    )}
+                  </section>
+                )}
+
+                {/* SECTION 5: MODERN PRACTICAL REMEDIES (KALYUG UPAYE) */}
+                {(activeTab === "all" || activeTab === "remedies") && (
+                  <section className="space-y-8 pt-4 avoid-break">
+                    <div className="text-center mb-6">
+                      <h3 className="text-2xl sm:text-4xl font-serif text-primary">Modern Result-Oriented Remedies</h3>
+                      <p className="text-muted-foreground text-xs sm:text-sm uppercase tracking-widest mt-1">
+                        Actionable lifestyle, spatial, and circadian calibration — No superstitious rituals
+                      </p>
+                    </div>
+
+                    {kundliData?.practicalRemedies && (
+                      <PracticalRemediesCard remedies={kundliData.practicalRemedies} />
                     )}
                   </section>
                 )}

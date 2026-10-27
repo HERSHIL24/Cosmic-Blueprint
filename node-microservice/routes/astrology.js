@@ -4,7 +4,12 @@ const Report = require('../models/Report');
 const {
   dateToJulianDay, getPlanetaryPositions,
   getLagnaRashi, getNakshatra, generateHouseData,
-  calculateYogasAndDoshas
+  calculateYogasAndDoshas,
+  generateDivisionalCharts,
+  calculateKPSystem,
+  calculateNadiCombinations,
+  calculateRahuKetuKarmicAxis,
+  generatePracticalKalyugRemedies
 } = require('../engines/astrologyEngine');
 
 // POST /api/astrology/chart
@@ -26,6 +31,13 @@ router.post('/chart', async (req, res, next) => {
     const { yogas: deepYogas, doshas } = calculateYogasAndDoshas(planets, lagna.rashi);
     const allYogas = deepYogas || [];
 
+    // Part 2 Real Engines:
+    const divisionalCharts = generateDivisionalCharts(planets, lagna);
+    const kpSystem = calculateKPSystem(planets, lagna.longitude);
+    const nadiCombinations = calculateNadiCombinations(planets);
+    const karmicAxis = calculateRahuKetuKarmicAxis(planets, lagna.rashi);
+    const practicalRemedies = generatePracticalKalyugRemedies(planets, lagna.rashi, allYogas, doshas);
+
     const result = {
       dob, time: birthTime, lat: latitude, lon: longitude,
       lagnaRashi: lagna.rashi,
@@ -37,6 +49,11 @@ router.post('/chart', async (req, res, next) => {
       houses,
       yogas: allYogas,
       doshas,
+      divisionalCharts,
+      kpSystem,
+      nadiCombinations,
+      karmicAxis,
+      practicalRemedies,
       summary: {
         lagna: `Your Lagna (Ascendant) is ${lagna.rashi}, giving you a ${lagna.rashi}-natured personality and physical constitution.`,
         moonSign: `Moon in ${planets.Moon.rashi} in the ${moonNakshatra.name} Nakshatra shapes your emotional world and intuitive mind.`,
